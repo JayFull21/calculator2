@@ -62,3 +62,7 @@ def test_divide_by_zero(monkeypatch, capsys):
     repl.run()
     captured = capsys.readouterr()
     assert "Error" in captured.out
+
+def test_prompt_returns_input(monkeypatch):
+    monkeypatch.setattr("builtins.input", lambda msg: "test")
+    assert repl._prompt("Enter something: ") == "test"
